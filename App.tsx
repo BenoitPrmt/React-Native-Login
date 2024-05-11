@@ -25,13 +25,10 @@ export default function App() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(FIREBASE_AUTH, (user) => {
+        return onAuthStateChanged(FIREBASE_AUTH, (user) => {
             setUser(user);
             setLoading(false);
         });
-
-        // Unsubscribe from the listener when the component unmounts
-        return unsubscribe;
     }, []);
 
     if (loading) {
